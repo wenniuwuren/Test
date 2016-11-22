@@ -1,8 +1,3 @@
-/**
- * @(#)TestListener.java, 2016年11月22日.
- * Copyright 2016 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package main.java.com.wenniuwuren.spring.event.listener;
 
 import org.springframework.context.ApplicationEvent;
