@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 支持 aop 注解 -->
+    <aop:aspectj-autoproxy />
+
+    <bean id="test" class="main.java.com.wenniuwuren.spring.aop.TestBean" />
+
+    <bean id="aspectBean" class="main.java.com.wenniuwuren.spring.aop.AspectJTest" />
+
+    <!-- 静态代理, 还需要添加一个 aop.xml,一个 vm 参数
+    <context:load-time-weaver />-->
+</beans>

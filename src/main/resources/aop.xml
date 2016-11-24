@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aspectj>
+    <weaver>
+        <!-- 指定织入的包-->
+        <include within="main.java.com.wenniuwuren.spring.aop.*" />
+    </weaver>
+
+    <!-- 使用哪些增强器 aspect 织入 -->
+    <aspects>
+        <aspect name="main.java.com.wenniuwuren.spring.aop.AspectJTest" />
+
+    </aspects>
+
+</aspectj>
