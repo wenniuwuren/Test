@@ -1,13 +1,10 @@
-package main.java.com.wenniuwuren.spring.aware;
+package com.wenniuwuren.spring.aware;
 
-import main.java.com.wenniuwuren.spring.customize.tag.User;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 /**
  *  Aware使用：Spring提供一些Aware相关接口，比如 BeanFactoryAware等，实现这些接口的Bean初始化后，
@@ -30,7 +27,7 @@ public class Test implements BeanFactoryAware{
     }
 
     public static void main(String[] args) {
-        ApplicationContext bf = new ClassPathXmlApplicationContext("main/resources/awareTest.xml");
+        ApplicationContext bf = new ClassPathXmlApplicationContext("awareTest.xml");
         // 不仅仅可以指定 beanName，也可以有构造函数或者工厂方法的方法参数
         Test test = (Test) bf.getBean("testAware");
         test.testAware();

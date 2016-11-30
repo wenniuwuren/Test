@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.event.listener;
+package com.wenniuwuren.spring.event.listener;
 
 
 import org.springframework.context.ApplicationEvent;

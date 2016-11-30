@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.test;
+package com.wenniuwuren.test;
 
 import javax.swing.tree.TreeNode;
 import java.text.SimpleDateFormat;

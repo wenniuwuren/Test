@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.udp;
+package com.wenniuwuren.netty.udp;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelOption;

@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop;
+package com.wenniuwuren.spring.aop;
 
 /**
  * 用于拦截的 bean

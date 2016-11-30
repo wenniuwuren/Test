@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop.jdk;
+package com.wenniuwuren.spring.aop.jdk;
 
 /**
  * 创建业务接口的实现类

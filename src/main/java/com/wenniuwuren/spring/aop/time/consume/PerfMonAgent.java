@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop.time.consume;
+package com.wenniuwuren.spring.aop.time.consume;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;

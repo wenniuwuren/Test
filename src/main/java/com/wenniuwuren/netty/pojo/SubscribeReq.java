@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.pojo;
+package com.wenniuwuren.netty.pojo;
 
 import java.io.Serializable;
 

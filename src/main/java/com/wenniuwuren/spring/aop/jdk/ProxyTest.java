@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop.jdk;
+package com.wenniuwuren.spring.aop.jdk;
 
 /**
  * 这是 AOP JDK版的简单实现

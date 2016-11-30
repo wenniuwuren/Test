@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.http;
+package com.wenniuwuren.netty.http;
 
 import static io.netty.handler.codec.http.HttpHeaders.isKeepAlive;
 import static io.netty.handler.codec.http.HttpHeaders.setContentLength;

@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aware;
+package com.wenniuwuren.spring.aware;
 
 /**
  * Created by Yibin_Zhu on 2016/11/21.

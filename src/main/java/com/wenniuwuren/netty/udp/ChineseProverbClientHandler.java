@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.udp;
+package com.wenniuwuren.netty.udp;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

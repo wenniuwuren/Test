@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring;
+package com.wenniuwuren.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean name="testAware" class="main.java.com.wenniuwuren.spring.aware.Test"/>
+    <bean name="testAware" class="com.wenniuwuren.spring.aware.Test"/>
 
-    <bean name="hello" class="main.java.com.wenniuwuren.spring.aware.Hello" />
+    <bean name="hello" class="com.wenniuwuren.spring.aware.Hello" />
 </beans>

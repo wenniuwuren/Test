@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring;
+package com.wenniuwuren.spring;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;

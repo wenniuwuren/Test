@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop;
+package com.wenniuwuren.spring.aop;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AopTest {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("main/resources/aopTest.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("aopTest.xml");
         // 不仅仅可以指定 beanName，也可以有构造函数或者工厂方法的方法参数
         TestBean testBean = (TestBean) context.getBean("test");
         testBean.test();

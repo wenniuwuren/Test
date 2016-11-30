@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop.cglib;
+package com.wenniuwuren.spring.aop.cglib;
 
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;

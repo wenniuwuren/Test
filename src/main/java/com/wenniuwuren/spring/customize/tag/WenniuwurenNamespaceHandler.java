@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.customize.tag;
+package com.wenniuwuren.spring.customize.tag;
 
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 

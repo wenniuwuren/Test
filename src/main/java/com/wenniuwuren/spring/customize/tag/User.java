@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.customize.tag;
+package com.wenniuwuren.spring.customize.tag;
 
 /**
  *  1. 创建一个需要扩展的组件

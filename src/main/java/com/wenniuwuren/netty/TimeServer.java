@@ -7,7 +7,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
-import main.java.com.wenniuwuren.netty.TimeServerHandler;
+import com.wenniuwuren.netty.TimeServerHandler;
 
 /**
  * Created by hzzhuyibin on 2016/8/8.

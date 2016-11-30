@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty;
+package com.wenniuwuren.netty;
 
 import io.netty.channel.*;
 import io.netty.buffer.ByteBuf;

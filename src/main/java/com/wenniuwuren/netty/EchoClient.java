@@ -1,5 +1,5 @@
 
-package main.java.com.wenniuwuren.netty;
+package com.wenniuwuren.netty;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;

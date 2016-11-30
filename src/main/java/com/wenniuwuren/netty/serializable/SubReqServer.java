@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.serializable;
+package com.wenniuwuren.netty.serializable;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

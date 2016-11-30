@@ -1,10 +1,10 @@
-package main.java.com.wenniuwuren.netty.serializable;
+package com.wenniuwuren.netty.serializable;
 
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import main.java.com.wenniuwuren.netty.pojo.SubscribeReq;
-import main.java.com.wenniuwuren.netty.pojo.SubscribeResp;
+import com.wenniuwuren.netty.pojo.SubscribeReq;
+import com.wenniuwuren.netty.pojo.SubscribeResp;
 
 
 /**

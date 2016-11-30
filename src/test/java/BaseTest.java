@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  * @author hzyurui
  */
-@ActiveProfiles(profiles = {"dev"})
+@ActiveProfiles(profiles = {"config/dev"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:test.xml"})
 public class BaseTest {

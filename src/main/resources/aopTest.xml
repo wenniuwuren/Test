@@ -7,9 +7,9 @@
     <!-- 支持 aop 注解 -->
     <aop:aspectj-autoproxy />
 
-    <bean id="test" class="main.java.com.wenniuwuren.spring.aop.TestBean" />
+    <bean id="test" class="com.wenniuwuren.spring.aop.TestBean" />
 
-    <bean id="aspectBean" class="main.java.com.wenniuwuren.spring.aop.AspectJTest" />
+    <bean id="aspectBean" class="com.wenniuwuren.spring.aop.AspectJTest" />
 
     <!-- 静态代理, 还需要添加一个 aop.xml,一个 vm 参数
     <context:load-time-weaver />-->

@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.http;
+package com.wenniuwuren.netty.http;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

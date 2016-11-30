@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop.jdk;
+package com.wenniuwuren.spring.aop.jdk;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring;
+package com.wenniuwuren.spring;
 
 /**
  * Created by hzzhuyibin on 2016/10/31.

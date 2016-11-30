@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.protocal;
+package com.wenniuwuren.netty.protocal;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.DefaultFileRegion;

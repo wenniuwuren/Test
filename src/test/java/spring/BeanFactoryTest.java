@@ -1,6 +1,6 @@
 package test.java.spring;
 
-import main.java.com.wenniuwuren.spring.MyTestBean;
+import com.wenniuwuren.spring.MyTestBean;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;

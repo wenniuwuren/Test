@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop;
+package com.wenniuwuren.spring.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;

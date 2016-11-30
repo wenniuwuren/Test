@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.spring.aop.jdk;
+package com.wenniuwuren.spring.aop.jdk;
 
 /**
  * Created by hzzhuyibin on 2016/11/24.

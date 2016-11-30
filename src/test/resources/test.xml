@@ -4,7 +4,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="myTestBean" class="main.java.com.wenniuwuren.spring.MyTestBean">
+    <bean id="myTestBean" class="com.wenniuwuren.spring.MyTestBean">
         <meta key="testStr" value="testaaaaaaaaa" />
     </bean>
 

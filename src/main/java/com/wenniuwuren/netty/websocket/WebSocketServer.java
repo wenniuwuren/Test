@@ -1,4 +1,4 @@
-package main.java.com.wenniuwuren.netty.websocket;
+package com.wenniuwuren.netty.websocket;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
