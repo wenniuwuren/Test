@@ -5,6 +5,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 测试静态代理加上vm 参数：  -javaagent:D:\MavenRepository\org\springframework\spring-instrument\3.0.4.RELEASE\spring-instrument-3.0.4.RELEASE.jar
+ * 书中的输出结果：
+ * before test
+ * before1
+ * test aop
+ * after test
+ * after1
  * Created by Yibin_Zhu on 2016/11/21.
  */
 public class AopTest {

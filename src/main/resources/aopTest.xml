@@ -7,6 +7,9 @@
     <!-- 支持 aop 注解 -->
     <aop:aspectj-autoproxy />
 
+    <!-- aop 注解并且强制使用 CGLib 代理
+    <aop:aspectj-autoproxy proxy-target-class="true" />  -->
+
     <bean id="test" class="com.wenniuwuren.spring.aop.TestBean" />
 
     <bean id="aspectBean" class="com.wenniuwuren.spring.aop.AspectJTest" />

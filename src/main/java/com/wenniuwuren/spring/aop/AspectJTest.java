@@ -4,7 +4,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 /**
- * 切面
+ * 切点及增强 Advisor
  * Created by hzzhuyibin on 2016/11/22.
  */
 @Aspect
