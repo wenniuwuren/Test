@@ -20,7 +20,7 @@ public class MyInvocationHandler implements InvocationHandler {
 
 
     /**
-     * 执行目标对象的方法
+     * 执行目标对象的方法。相对应的，Spring 的 JdkDynamicAopProxy 也实现 InvocationHandler，所以核心代理实现也在相应的 invoke 方法里
      * @param proxy
      * @param method
      * @param args

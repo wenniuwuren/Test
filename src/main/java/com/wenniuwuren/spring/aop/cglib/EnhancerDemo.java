@@ -25,6 +25,7 @@ public class EnhancerDemo {
         System.out.println("EnhancerDemo test()");
     }
 
+    // Spring 的 CglibAopProxy 类中的内部类 DynamicAdvisedInterceptor 也实现了 MethodInterceptor
     private static class MethodInterceptorImpl implements MethodInterceptor {
 
         @Override
