@@ -4,27 +4,29 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 /**
- * 切点及增强 Advisor
+ * 封装 Pointcut 和 advice 的 Advisor
  * Created by hzzhuyibin on 2016/11/22.
  */
 @Aspect
-public class AspectJTest {
+public class AspectJTest {// Advisor
 
     @Pointcut("execution(* *.test(..))")
     public void test() {
 
     }
-
+    // before advice
     @Before("test()")
     public void beforeTest() {
         System.out.println("before test");
     }
 
+    // after advice
     @After("test()")
     public void afterTest() {
         System.out.println("after test");
     }
 
+    // around advice
     @Around("test()")
     public Object arountTest(ProceedingJoinPoint proceedingJoinPoint) {
         System.out.println("before1");
