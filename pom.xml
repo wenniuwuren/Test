@@ -261,12 +261,15 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <finalName>PerfMonAgent</finalName>
+                    <!--spring time comsume<finalName>PerfMonAgent</finalName>-->
+                    <finalName>Spi</finalName>
                     <archive>
                         <manifestEntries>
-                            <Premain-class>com.wenniuwuren.spring.aop.time.consume.PerfMonAgent</Premain-class>
-                            <Boot-Class-Path>D:\MavenRepository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>
+                            <!--spring time--> <!--comsume<Premain-class>com.wenniuwuren.spring.aop.time.consume.PerfMonAgent</Premain-class>-->
+                            <!--spi Main启动类--><Premain-class>com.wenniuwuren.spi.SpiTest</Premain-class>
+                            <!--spring time--> <!--comsume<Boot-Class-Path>D:\MavenRepository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>-->
                             <Can-Redefine-Classes>false</Can-Redefine-Classes>
+                            <!--spi 打包后加入到类路径--><addClasspath>true</addClasspath>
                         </manifestEntries>
                         <addMavenDescriptor>false</addMavenDescriptor>
                     </archive>
