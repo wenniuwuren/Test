@@ -1,8 +1,3 @@
-/**
- * @(#)ThreadLocalTest.java, 2017年03月14日.
- * Copyright 2017 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.wenniuwuren.java.threadlocal;
 
 /**
