@@ -30,13 +30,10 @@ public class ThreadLocalTest {
 
     public static void main(String[] args) {
 
-        NewThread thread1 = new NewThread(count);
-        NewThread thread2 = new NewThread(count);
-        NewThread thread3 = new NewThread(count);
+        for (int i = 0; i < 3; i++) {
+            new NewThread(count).start();
+        }
 
-        thread1.start();
-        thread3.start();
-        thread2.start();
 
     }
 
