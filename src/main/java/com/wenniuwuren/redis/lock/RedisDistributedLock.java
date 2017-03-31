@@ -14,6 +14,8 @@ import redis.clients.jedis.Transaction;
 
 
 /**
+ * Redis 分布式锁
+ *
  * Created by hzzhuyibin on 2017/3/22.
  */
 public class RedisDistributedLock {
@@ -72,8 +74,9 @@ public class RedisDistributedLock {
             long timeWait = System.currentTimeMillis() + timeouts * 1000;
 
             while (System.currentTimeMillis() < timeWait) {
-                if (jedis.setnx(lockName, value) == 1) { // 这里用到了 redis 的 setnx，不存在则赋值，返回 1
+                if (jedis.setnx(lockName, value) == 1) { // 这里利用 redis 的 setnx，不存在则赋值，并且返回1的特性
                     System.out.println("lock geted");
+                    jedis.expire(lockName, 10); // 保证就算宕机了，其他节点在这个 key 锁过期后还能获取锁
                     return value;
                 }
 
@@ -106,6 +109,7 @@ public class RedisDistributedLock {
             while (true) {
                 jedis.watch(lockName);
                 System.out.println("threadName=" + threadName + ", jedis.get(lockName) = " + jedis.get(lockName));
+                // 因为value是线程间随机唯一的ID，所以锁不会被其他线程删除，只会被自己获取锁的线程删除
                 if (jedis.get(lockName).equals(value)) {
                     Transaction tx = jedis.multi();
                     tx.del(lockName);
@@ -133,11 +137,16 @@ public class RedisDistributedLock {
                     public void run() {
                         try {
                             System.out.println(threadName + " starting...");
-                            String value = getLock(threadName, pool, LOCK_NAME, 50); // 50s 超时
+
+                            // 50s超时。
+                            // 这里有一个问题，解锁失败，锁一直会在redis中，当然可以加 expire time。
+                            // 但是设置的expire time太短，方法没等执行完，锁就自动释放了，那么会有并发问题。
+                            // 如果设置的时间太长，其他获取锁的线程就可能要平白的多等一段时间。
+                            String value = getLock(threadName, pool, LOCK_NAME, 50);
                             System.out.println(threadName + " get Lock " + value);
 
                             // 过 10s 释放锁，观察结果比较方便。
-                            // 从结果可以看出来，因为前 5 个 sleep 了 10s 所以后面 5 个最终都没拿到锁
+                            // 从结果可以看出来，因为前5个sleep了10s,上面超时设了50s。所以后面5个最终都没拿到锁
                             Thread.sleep(10000);
 
                             if (StringUtils.isNotBlank(value)) { // 获得锁才去释放
