@@ -1,4 +1,4 @@
-package com.wenniuwuren.java.forkjoin;
+package com.wenniuwuren.java.forkjoin.count.number;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
@@ -57,9 +57,13 @@ public class CountForkJoin extends RecursiveTask<Integer>{
     public static void main(String[] args) {
         try {
             ForkJoinPool forkJoinPool = new ForkJoinPool();
-            CountForkJoin countForkJoin = new CountForkJoin(1, 6);
+            CountForkJoin countForkJoin = new CountForkJoin(1, 5);
 
             Future<Integer> result = forkJoinPool.submit(countForkJoin);
+
+            if(countForkJoin.isCompletedAbnormally()) {
+                System.out.println(countForkJoin.getException());
+            }
 
             System.out.println(result.get());
         } catch (Exception e) {
