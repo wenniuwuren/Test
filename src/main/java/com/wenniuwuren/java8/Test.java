@@ -27,6 +27,7 @@ public class Test {
         }
         // 使用 Java8 的引用方法「::」语法，即把这个方法作为值
         File[] hiddenFiles8 = new File("D:\\logistics-dsc").listFiles(File::isHidden);
+//        File[] hiddenFiles8 = new File("D:\\logistics-dsc").listFiles((path) -> path.isHidden());
         for (int i = 0; i < hiddenFiles8.length; i++) {
             System.out.println(hiddenFiles8[i].getName());
         }
@@ -34,8 +35,9 @@ public class Test {
 
 
         // Java8 Lambda 表达式, Lambda表达式在Java中又称为闭包或匿名函数。用来简化代码，而不是改变功能。
-        // 在哪里使用 Lambda ? 在函数式接口上使用：只定义一个抽象方法的接口(除了 default，equarl，toString 外)，
-        // 如 Comparator,Runnable,Callable等，Lambda 提供了函数式接口中抽象方法的匿名实现
+        // 在哪里使用 Lambda ? 在函数式接口(@FunctionalInterface)上使用：只定义一个抽象方法的接口(除了 default默认实现，equal，toString 外)，
+        // 如 Comparator,Runnable,Callable等，Lambda 提供了函数式接口中抽象方法的匿名实现，
+        // 例如实现 Runnable，就要对应 run 没有参数，没有返回值 () -> System.out.println("");
         // 1. 替代匿名内部类
         new Thread(new Runnable() {
             @Override

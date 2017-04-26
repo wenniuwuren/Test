@@ -8,7 +8,7 @@ import com.rabbitmq.client.QueueingConsumer;
 /**
  * 消息消费者，阻塞等待消息到来
  */
-public class Comsumer {
+public class Consumer {
     //队列名称  
     private final static String QUEUE_NAME = "RabbitMQDurableTest";
   
