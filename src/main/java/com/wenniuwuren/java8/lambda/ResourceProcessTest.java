@@ -1,4 +1,4 @@
-package com.wenniuwuren.java8;
+package com.wenniuwuren.java8.lambda;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,7 +19,9 @@ public class ResourceProcessTest {
 //            String result = processFile((BufferedReader br) -> br.readLine() + br.readLine());
 
             // 4. 传递 lambda
-            String result = processFile((BufferedReader br) -> br.readLine());
+//            String result = processFile((BufferedReader br) -> br.readLine());
+            // 将 Lambda 改为方法引用
+            String result = processFile(BufferedReader::readLine);
             System.out.println(result);
             result = processFile((BufferedReader br) -> br.readLine() + br.readLine());
             System.out.println(result);

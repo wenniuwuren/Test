@@ -1,4 +1,4 @@
-package com.wenniuwuren.java8;
+package com.wenniuwuren.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,8 +18,9 @@ public class ConsumerTest {
         }
         System.out.println("-------------------");
 
-        consumerProcess(list, (i) -> System.out.println(i));
-
+        //consumerProcess(list, (i) -> System.out.println(i));
+        // Lambda 重构为方法引用
+        consumerProcess(list, System.out::println);
     }
 
     public static void consumerProcess(List<Integer> list, Consumer<Integer> consumer) {

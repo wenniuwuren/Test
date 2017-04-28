@@ -1,4 +1,4 @@
-package com.wenniuwuren.java8;
+package com.wenniuwuren.java8.lambda;
 
 import org.apache.commons.collections.map.HashedMap;
 
@@ -18,7 +18,9 @@ public class FunctionTest {
     public static void main(String[] args) {
         List<String> stringList = Arrays.asList("a", "aa", "aaa");
 
-        List<Integer> result = strLengthFuction(stringList, (s) -> s.length());
+        // List<Integer> result = strLengthFuction(stringList, (s) -> s.length());
+        // 方法引用方式，更简洁
+        List<Integer> result = strLengthFuction(stringList, String::length);
         for (Integer i : result) {
             System.out.println(i);
         }

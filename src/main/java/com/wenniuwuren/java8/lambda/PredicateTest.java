@@ -1,4 +1,4 @@
-package com.wenniuwuren.java8;
+package com.wenniuwuren.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
