@@ -1,6 +1,6 @@
-package com.wenniuwuren.spi.impl;
+package com.wenniuwuren.java.spi.impl;
 
-import com.wenniuwuren.spi.Hello;
+import com.wenniuwuren.java.spi.Hello;
 
 /**
  * Created by hzzhuyibin on 2017/2/14.
