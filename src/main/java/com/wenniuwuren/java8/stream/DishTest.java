@@ -1,14 +1,14 @@
 package com.wenniuwuren.java8.stream;
 
-import static java.util.stream.Collectors.toList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+import static java.util.stream.Collectors.*;
 
 /**
+ * 集合流（从集合生成流）
  * Created by hzzhuyibin on 2017/4/28.
  */
-public class Test {
+public class DishTest {
 
     static List<Dish> menu = Arrays.asList(
             new Dish("pork", false, 800, Dish.Type.MEAT),
@@ -21,6 +21,8 @@ public class Test {
             new Dish("prawns", false, 300, Dish.Type.FISH),
             new Dish("salmon", false, 450, Dish.Type.FISH)
             );
+
+    public enum CaloryLevelEnum {DIET, NORMAL, FAT};
 
     /**
      * 结果：
@@ -62,7 +64,7 @@ public class Test {
 
         // 4. 跳过元素 skip()
 
-        // 5. 对流中每一个元素应用函数 map()。 map是生成单个流，而flapMap()将流合并起来 Java8实战P88
+        // 5. 对流中每一个元素应用函数 map()。 map是生成单个流，而flapMap()将多个流合并起来 Java8实战P88
 
         // 6. 是否至少匹配一个元素
         if (menu.stream().anyMatch(Dish::isVegetarian))
@@ -94,9 +96,57 @@ public class Test {
         System.out.println("菜单中有多少菜="+ menu.stream().count());
 
 
+        /*****
+         * 高级规约--高级规约
+         */
+        // 卡路里最高的菜名
+        Comparator<Dish> dishCaloryComparator = Comparator.comparing(Dish::getCalories);
+        Optional<Dish> dish1 = menu.stream().collect(maxBy(dishCaloryComparator));
+        System.out.println("卡路里最高的菜名：" + dish1.get().getName());
 
+//        int totalCalory = menu.stream().collect(summingInt(Dish::getCalories));
+//        int totalCalory = menu.stream().collect(reducing(0, Dish::getCalories, (a, b) -> a + b));
+        // 可读性最好，性能最佳
+        int totalCalory = menu.stream().mapToInt(Dish::getCalories).sum();
+        System.out.println("卡路里总计：" + totalCalory);
+
+        double averageCalory = menu.stream().collect(averagingDouble(Dish::getCalories));
+        System.out.println("卡路里平均值：" + averageCalory);
+
+        IntSummaryStatistics intSummaryStatistics = menu.stream().collect(summarizingInt(Dish::getCalories));
+        System.out.println("卡路里统计数据概要：" + intSummaryStatistics);
+
+        String shortMenu = menu.stream().map(Dish::getName).collect(joining(", "));
+        // 性能差，每次生成新 String
+        // shortMenu = menu.stream().map(Dish::getName).collect(reducing((a, b) -> a + ", " + b)).get();
+        System.out.println("所有菜名输出: " + shortMenu);
+
+        // 分组
+        // 素食，肉食分组 groupingBy(返回的内容作为Map的Key)
+        Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
+        System.out.println("素食，肉食分组:" + dishesByType);
+        // 按卡路里分组
+        Map<CaloryLevelEnum, List<Dish>> dishedByCalory = menu.stream().collect(groupingBy(d -> {
+            if (d.getCalories() <= 400) return CaloryLevelEnum.DIET;
+            else if (d.getCalories() <= 700) return CaloryLevelEnum.NORMAL;
+            else return CaloryLevelEnum.FAT;
+        }));
+        System.out.println("按卡路里分组: " + dishedByCalory);
+        // 多级分组
+        Map<Dish.Type, Map<CaloryLevelEnum, List<Dish>>> dishedByCaloryByType = new DishTest().getDishByCaloryByType();
+        System.out.println("先按类型分组，再按卡路里分组" + dishedByCaloryByType);
     }
 
+    private Map<Dish.Type, Map<CaloryLevelEnum, List<Dish>>> getDishByCaloryByType() {
+
+        return menu.stream().collect(groupingBy(Dish::getType, groupingBy(d -> {
+            if (d.getCalories() <= 400) return CaloryLevelEnum.DIET;
+            else if (d.getCalories() <= 700) return CaloryLevelEnum.NORMAL;
+            else return CaloryLevelEnum.FAT;
+        })));
+    }
 
 }
+
+
 
