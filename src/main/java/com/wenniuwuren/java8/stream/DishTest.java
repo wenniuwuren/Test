@@ -121,11 +121,11 @@ public class DishTest {
         // shortMenu = menu.stream().map(Dish::getName).collect(reducing((a, b) -> a + ", " + b)).get();
         System.out.println("所有菜名输出: " + shortMenu);
 
-        // 分组
+        // ------分组-------
         // 素食，肉食分组 groupingBy(返回的内容作为Map的Key)
         Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
         System.out.println("素食，肉食分组:" + dishesByType);
-        // 按卡路里分组
+        // 按卡路里分组 groupingBy(f, toList<T>)，f 是分类函数，后面的参数默认是 toList<T>
         Map<CaloryLevelEnum, List<Dish>> dishedByCalory = menu.stream().collect(groupingBy(d -> {
             if (d.getCalories() <= 400) return CaloryLevelEnum.DIET;
             else if (d.getCalories() <= 700) return CaloryLevelEnum.NORMAL;
@@ -135,6 +135,15 @@ public class DishTest {
         // 多级分组
         Map<Dish.Type, Map<CaloryLevelEnum, List<Dish>>> dishedByCaloryByType = new DishTest().getDishByCaloryByType();
         System.out.println("先按类型分组，再按卡路里分组" + dishedByCaloryByType);
+        Map<Dish.Type, Long> typeCount = menu.stream().collect(groupingBy(Dish::getType, counting()));
+        System.out.println("每个类型有多少个菜:" + typeCount);
+
+        // ------分区------- 是分组的特殊情况，由一个谓词作为分类函数
+        // 按是否为素食分区
+        Map<Boolean, Set<Dish>> partitionMenu = menu.stream().collect(partitioningBy(Dish::isVegetarian, toSet()));
+        System.out.println("按是否为素食分区:" + partitionMenu);
+        
+
     }
 
     private Map<Dish.Type, Map<CaloryLevelEnum, List<Dish>>> getDishByCaloryByType() {

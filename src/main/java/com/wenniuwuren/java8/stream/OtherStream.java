@@ -65,12 +65,15 @@ public class OtherStream {
         /*******
          *  创建无限流
          */
-        // 迭代：斐波那契数列
+        // 迭代：斐波那契数列 iterate不适合并行化，因为其他值不确定，无法fork
         Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]}).limit(5)
                 .forEach(t -> System.out.println("[" + t[0] + "," + t[1] + "]"));
 
-        // 生成:
-        Stream.generate(Math::random).limit(5).forEach(System.out::println);
+        // 生成: parallel()并行，内部默认使用了ForkJoinPool; sequential()顺序
+        Stream.generate(Math::random).parallel().limit(5).forEach(System.out::println);
+        // 通过下面这个来改变线程池大小，默认线程数量就是处理器数量，当前只能全局改变
+//        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "12");
+        System.out.println(Runtime.getRuntime().availableProcessors());
     }
 }
 
