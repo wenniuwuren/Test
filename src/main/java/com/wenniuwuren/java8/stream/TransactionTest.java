@@ -44,7 +44,12 @@ public class TransactionTest {
         // 4. 返回所有交易员的姓名字符串，并按字母顺序排序
         // 最后reduce 反复拼接字符串较低效
         String traderNameStr = transactions.stream().map(transactions -> transactions.getTrader().getName())
-                .distinct().sorted().reduce("", (n1, n2) -> n1 + n2);
+                .peek(x -> System.out.println("after map " + x))
+                .distinct()
+                .peek(x -> System.out.println("after distinct " + x))
+                .sorted()
+                .peek(x -> System.out.println("after sort " + x))
+                .reduce("", (n1, n2) -> n1 + n2);
 //        String traderNameStr = transactions.stream().map(transactions -> transactions.getTrader().getName())
 //                .distinct().sorted().collect(joinning());
         System.out.println("返回所有交易员的姓名字符串，并按字母顺序排序:" + traderNameStr);
