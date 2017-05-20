@@ -13,10 +13,12 @@ import java.util.concurrent.CountDownLatch;
 public class ConnectTest implements Watcher{
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
+    public static final String ip = "192.168.116.128:2181";
+
     public static void main(String[] args) {
         try {
-            ZooKeeper zookeeper = new ZooKeeper("192.168.99.110:2181", 5000, new ConnectTest());
-            System.out.println(zookeeper.getState());
+            ZooKeeper zookeeper = new ZooKeeper(ip, 5000, new ConnectTest());
+            System.out.println("zookeeper.getState():" + zookeeper.getState());
 
             try {
                 // 因为 ZooKeeper 是异步创建连接的，所以在这里等待着，服务端回调 process() 后，
@@ -27,10 +29,10 @@ public class ConnectTest implements Watcher{
                 byte[] passwd = zookeeper.getSessionPasswd();
 
                 // 错误的 sessionId。会收到服务端的 state:Expired
-                zookeeper = new ZooKeeper("192.168.99.110:2181", 5000, new ConnectTest(), 1l, passwd);
+                zookeeper = new ZooKeeper(ip, 5000, new ConnectTest(), 1l, passwd);
 
                 // 连接上 zookeeper 服务端后，使用 sessionId,passwd 连接可以复用会话
-                zookeeper = new ZooKeeper("192.168.99.110:2181", 5000, new ConnectTest(), sessionId, passwd);
+                zookeeper = new ZooKeeper(ip, 5000, new ConnectTest(), sessionId, passwd);
                 Thread.sleep(Integer.MAX_VALUE);
             } catch (InterruptedException ie) {
                 System.out.println("ZooKeeper session established");
