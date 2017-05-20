@@ -1,4 +1,4 @@
-package com.wenniuwuren.spi;
+package com.wenniuwuren.java.spi;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;

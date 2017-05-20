@@ -1,4 +1,4 @@
-package com.wenniuwuren.spi;
+package com.wenniuwuren.java.spi;
 
 /**
  * Created by hzzhuyibin on 2017/2/14.

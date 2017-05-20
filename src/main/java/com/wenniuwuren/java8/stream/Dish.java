@@ -13,6 +13,10 @@ public class Dish {
     private int calories;
     private Type type;
 
+    public Dish() {
+
+    }
+
     public Dish(String name, boolean vegetarian, int calories, Type type) {
         this.name = name;
         this.vegetarian = vegetarian;
@@ -54,7 +58,10 @@ public class Dish {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "name:" + name + ", " + "vegetarian:" + vegetarian + ", " + "calories:" + calories + ", " + "type:" + type;
+    }
 
 
 }
