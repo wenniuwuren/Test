@@ -51,6 +51,15 @@ public class Shop {
 //        return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
 
+
+    public String getPriceWithDiscount(String product) {
+        double price = calculatePrice(product);
+        // 随机一个折扣
+        Discount.Code code = Discount.Code.values()[new Random().nextInt(Discount.Code.values().length)];
+
+        return getShopName() + ":" + price + ":" + code;
+    }
+
     private double calculatePrice(String product) {
         Util.delay();
         return new Random().nextDouble() * product.charAt(0) + product.charAt(1);

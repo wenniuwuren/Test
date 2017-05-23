@@ -67,6 +67,15 @@ public class Test {
         System.out.println("cost: " + ((System.nanoTime() - startTime) / 1000_000) + "ms");
 
 
+
+        // ------- 对多个异步任务进行流水线操作 ------
+        long s = System.nanoTime();
+        // 顺序执行，消耗10000+ms
+//        System.out.println(findPricesUseQuote("my product"));
+
+        // 对多个异步任务进行流水线 2000+ms
+        System.out.println(findPricesUseQuoteWithAsyn("my product"));
+        System.out.println("cost: " + ((System.nanoTime() - s) / 1000_000) + "ms");
     }
 
     // 顺序执行
@@ -103,6 +112,27 @@ public class Test {
         // join 等待所有异步操作结果结束
         return priceFutures.parallelStream().map(CompletableFuture::join).collect(Collectors.toList());
 
+    }
+
+    // 顺序执行
+    public static List<String> findPricesUseQuote(String product) {
+        return shops.stream().map(shop -> shop.getPriceWithDiscount(product))   // 取得每个商品原始价格
+                .map((String s) -> Quote.parse(s))        // 对shop返回字符串进行处理
+                .map(quote -> Discount.applyDiscount(quote))    // 应用折扣
+                .collect(Collectors.toList());
+    }
+
+    // 对多个异步任务进行流水线操作
+    public static List<String> findPricesUseQuoteWithAsyn(String product) {
+         List<CompletableFuture<String>> c = shops.stream()
+                 // 取得每个商品原始价格(一般是远程操作，使用异步) Stream<CompletableFuture<String>>
+                 .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceWithDiscount(product), executor))
+                 // 解析报价(一般是本地操作，同步)  CompletableFuture<Quote>
+                .map(future -> future.thenApply((String s) -> Quote.parse(s)))
+                 // CompletableFuture<String> (一般是远程操作，使用异步)  thenCompose()是对两个异步操作进行流水线
+                .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)))
+                .collect(Collectors.toList());
+         return c.stream().map(CompletableFuture::join).collect(Collectors.toList()); // 等待流中的所有Future执行完毕，并提取各自的返回值
     }
 }
 
