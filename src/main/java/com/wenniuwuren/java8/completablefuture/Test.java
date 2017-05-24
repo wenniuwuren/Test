@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by hzzhuyibin on 2017/5/22.
@@ -69,13 +70,24 @@ public class Test {
 
 
         // ------- 对多个异步任务进行流水线操作 ------
-        long s = System.nanoTime();
+        long s1 = System.nanoTime();
         // 顺序执行，消耗10000+ms
 //        System.out.println(findPricesUseQuote("my product"));
 
         // 对多个异步任务进行流水线 2000+ms
         System.out.println(findPricesUseQuoteWithAsyn("my product"));
-        System.out.println("cost: " + ((System.nanoTime() - s) / 1000_000) + "ms");
+        System.out.println("cost: " + ((System.nanoTime() - s1) / 1000_000) + "ms");
+
+        // 先计算结束先返回
+        long s2 = System.nanoTime();
+        CompletableFuture[] futures = (CompletableFuture[])findPricesStream("my product")
+                // thenAccept() 在之前的3个 CompletableFuture 上注册一个操作，该操作会用CompletableFuture执行完成返回值做参数
+                .map(f -> f.thenAccept(s -> System.out.println(s + " done in " + ((System.nanoTime() - s2) / 1000_000) + "ms")))
+                .toArray(size -> new CompletableFuture[size]);
+        // 最终等待全部结束
+        CompletableFuture.allOf(futures).join();
+        System.out.println("all shops have now responded in " + ((System.nanoTime() - s2) / 1000_000) + "ms");
+
     }
 
     // 顺序执行
@@ -129,10 +141,25 @@ public class Test {
                  .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceWithDiscount(product), executor))
                  // 解析报价(一般是本地操作，同步)  CompletableFuture<Quote>
                 .map(future -> future.thenApply((String s) -> Quote.parse(s)))
-                 // CompletableFuture<String> (一般是远程操作，使用异步)  thenCompose()是对两个异步操作进行流水线
+                 // CompletableFuture<String> (一般是远程操作，使用异步)  thenCompose()是对两个异步操作(第二个依赖第一个结果)进行流水线
+                 // 如果两个异步操作第二个不依赖第一个结果用 thenCombine()
                 .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)))
                 .collect(Collectors.toList());
          return c.stream().map(CompletableFuture::join).collect(Collectors.toList()); // 等待流中的所有Future执行完毕，并提取各自的返回值
+    }
+
+
+    // 先计算结束先返回
+    public static Stream<CompletableFuture<String>> findPricesStream(String product) {
+        return shops.stream()
+                // 取得每个商品原始价格(一般是远程操作，使用异步) Stream<CompletableFuture<String>>
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceWithDiscount(product), executor))
+                // 解析报价(一般是本地操作，同步)  CompletableFuture<Quote>
+                .map(future -> future.thenApply((String s) -> Quote.parse(s)))
+                // CompletableFuture<String> (一般是远程操作，使用异步)  thenCompose()是对两个异步操作(第二个依赖第一个结果)进行流水线
+                // 如果两个异步操作第二个不依赖第一个结果用 thenCombine()
+                .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)));
+
     }
 }
 
