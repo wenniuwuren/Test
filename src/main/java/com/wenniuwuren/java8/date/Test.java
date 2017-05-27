@@ -81,7 +81,7 @@ public class Test {
         Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
         // ---------------以上都是不可修改对象，为了更好支持函数式编程，线程安全-----------------------
 
-        // 可以看到改变日期，都是hi生成一个新对象
+        // 可以看到改变日期，都是新生成一个新对象
         LocalDate date2 = LocalDate.of(2017, 05, 25); // 2017-05-25
         LocalDate date3 = date2.withYear(2016);       // 2016-05-25
         LocalDate date4 = date2.withDayOfMonth(20);   // 2017-05-20
@@ -91,11 +91,10 @@ public class Test {
         LocalDate date8 = date2.plus(2, ChronoUnit.MONTHS);  // 2017-07-25
 
         // TemporalAdjusters
-        LocalDate date9 = date2.with(nextOrSame(DayOfWeek.FRIDAY)); // 2017-05-26
-        LocalDate date10 = date2.with(lastDayOfMonth());            // 2017-05-31
+        LocalDate date9 = date2.with(nextOrSame(DayOfWeek.FRIDAY)); // 下一个周五 2017-05-26
+        LocalDate date10 = date2.with(lastDayOfMonth());            // 这个月最后一天 2017-05-31
 
 
-        // 处理不同时区和历法
     }
 }
 
