@@ -20,7 +20,7 @@ public class ThreadPoolTest {
     static final int maxPoolSize = 10;
 
     // 线程池的工作线程空闲后，保持存活的时间。所以如果任务很多，并且每个任务执行的时间比较短，可以调大这个时间，提高线程的利用率。
-    static final long keepAliveTime = 0L;
+    static final long keepAliveTime = 1000L;
 
     // 用于保存等待执行的任务的阻塞队列。 可以选择以下几个阻塞队列。
     // ArrayBlockingQueue：是一个基于数组结构的有界阻塞队列，FIFO
@@ -30,10 +30,10 @@ public class ThreadPoolTest {
     static BlockingQueue blockingDeque = new LinkedBlockingQueue();
 
     // 当队列和线程池都满了，说明线程池处于饱和状态，那么必须采取一种策略处理提交的新任务。这个策略默认情况下是AbortPolicy，表示无法处理新任务时抛出异常。以下是JDK1.5提供的四种策略。
-    // AbortPolicy：直接抛出异常。
+    // AbortPolicy：拒绝接受任务，并抛出异常。
     // CallerRunsPolicy：用调用者所在线程来运行任务, executor shutdown 了任务才会被抛弃
-    // DiscardOldestPolicy：丢弃队列里最近的一个任务，并执行当前任务。
-    // DiscardPolicy：不处理，丢弃掉。
+    // DiscardOldestPolicy：丢弃队列里最老的一个任务，并执行当前任务。
+    // DiscardPolicy：丢弃掉。
     // 当然也可以根据应用场景需要来实现RejectedExecutionHandler接口自定义策略。如记录日志或持久化不能处理的任务。
     static RejectedExecutionHandler rejectedExecutionHandler = new ThreadPoolExecutor.CallerRunsPolicy();
 
