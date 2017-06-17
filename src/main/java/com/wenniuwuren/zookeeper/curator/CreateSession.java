@@ -1,5 +1,6 @@
 package com.wenniuwuren.zookeeper.curator;
 
+import com.wenniuwuren.Constants;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -12,7 +13,6 @@ import org.apache.zookeeper.CreateMode;
  */
 public class CreateSession {
 
-    public static final String ip = "192.168.116.128:2181";
     public static final String path = "/zk-book/c1";
 
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class CreateSession {
             CuratorFramework client = null;
 //                    client = CuratorFrameworkFactory.newClient(ip, 5000, 3000, retryPolicy);
             // fluent 风格
-            client = CuratorFrameworkFactory.builder().connectString(ip).sessionTimeoutMs(5000)
+            client = CuratorFrameworkFactory.builder().connectString(Constants.ZK_HOST).sessionTimeoutMs(5000)
                     .retryPolicy(retryPolicy)
                     .build();
 
