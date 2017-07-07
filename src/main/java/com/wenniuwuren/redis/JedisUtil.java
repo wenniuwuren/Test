@@ -1,5 +1,6 @@
 package com.wenniuwuren.redis;
 
+import com.wenniuwuren.Constants;
 import org.apache.commons.lang.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.ZParams;
@@ -13,7 +14,7 @@ public class JedisUtil {
     private static int ARTICLES_PER_PAGE = 25;
 
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("localhost");
+        Jedis jedis = new Jedis(Constants.HOST);
 
         jedis.zadd("zset1", 1, "a");
         jedis.zadd("zset1", 2, "b");

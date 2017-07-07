@@ -5,5 +5,8 @@ package com.wenniuwuren;
  */
 public class Constants {
 
-    public static final String ZK_HOST = "192.168.243.128:2181";
+    public static final String HOST = "192.168.243.128";
+
+    public static final String ZK_HOST = HOST + ":2181";
+
 }
