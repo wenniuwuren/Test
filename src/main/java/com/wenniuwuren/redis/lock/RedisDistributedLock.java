@@ -38,7 +38,7 @@ public class RedisDistributedLock {
 
     private static int count = 0;
 
-    private static final String LOCK_NAME = "lockName";
+    private static final String LOCK_NAME = "distributed_lock_lockName";
 
     private static final String PASSWORD = "redis";
 
@@ -75,7 +75,7 @@ public class RedisDistributedLock {
 
             while (System.currentTimeMillis() < timeWait) {
                 if (jedis.setnx(lockName, value) == 1) { // 这里利用 redis 的 setnx，不存在则赋值，并且返回1的特性
-                    System.out.println("lock geted");
+                    System.out.println("lock geted"); // 注意：要是在这里宕机了.. 那么这个锁可能永远都释放不了，给 key加个前缀 手动去删
                     jedis.expire(lockName, 10); // 保证就算宕机了，其他节点在这个 key 锁过期后还能获取锁
                     return value;
                 }
