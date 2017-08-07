@@ -18,6 +18,7 @@ public class CalculateNextFireTime {
 
 
     public static void main(String[] args) throws ParseException, InterruptedException {
+        // 获取最近几次的执行时间 start
         CronTriggerImpl cronTriggerImpl = new CronTriggerImpl();
         cronTriggerImpl.setCronExpression("0 0 15 5 * ?");//这里写要准备猜测的cron表达式
         Calendar calendar = Calendar.getInstance();
@@ -31,6 +32,14 @@ public class CalculateNextFireTime {
                 break;
             }
             System.out.println(dateFormat.format(dates.get(i)));
+        }
+        // 获取最近几次的执行时间 end
+
+        System.out.println("-----------------------------------------");
+        // 获取最近n次的执行时间  这里n=1
+        List<Date> dates1 = TriggerUtils.computeFireTimes(cronTriggerImpl, null, 1);
+        for (Date d : dates1) {
+            System.out.println(dateFormat.format(d));
         }
     }
 }
