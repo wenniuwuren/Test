@@ -29,6 +29,7 @@ public class NodeExistCheck implements Watcher{
 
             zk.create(path, "".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 
+            // version=-1 不要求使用乐观锁
             zk.setData(path, "123".getBytes(), -1);
 
             // 子节点操作不会通知

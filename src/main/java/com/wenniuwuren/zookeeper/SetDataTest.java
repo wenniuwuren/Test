@@ -22,7 +22,7 @@ public class SetDataTest implements Watcher{
             countDownLatch.await();
 
             zk.create(path, "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
-            // version=-1 说明根据最新版本进行更新
+            // version=-1 说明根据最新版本进行更新(不要求使用乐观锁)
             Stat stat = zk.setData(path, "456".getBytes(), -1);
             System.out.println(stat.getCzxid() + "," + stat.getMzxid() + "," + stat.getVersion());
 
