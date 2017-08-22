@@ -39,7 +39,7 @@ public class Chapter05 {
     public void run()
             throws InterruptedException
     {
-        Jedis conn = new Jedis(Constants.HOST);
+        Jedis conn = new Jedis(Constants.REDIS_HOST_HOME);
 //        conn.select(15);
 
 //        testLogRecent(conn);

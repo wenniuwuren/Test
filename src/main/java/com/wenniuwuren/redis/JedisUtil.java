@@ -14,7 +14,7 @@ public class JedisUtil {
     private static int ARTICLES_PER_PAGE = 25;
 
     public static void main(String[] args) {
-        Jedis jedis = new Jedis(Constants.HOST);
+        Jedis jedis = new Jedis(Constants.REDIS_HOST_COMPANY);
 
         jedis.zadd("zset1", 1, "a");
         jedis.zadd("zset1", 2, "b");
