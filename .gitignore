@@ -18,4 +18,5 @@ build
 /src/main/webapp/styles/css/**/*.css
 *.iml
 *.idea
+/out
 /src/main/webapp/WEB-INF/*
