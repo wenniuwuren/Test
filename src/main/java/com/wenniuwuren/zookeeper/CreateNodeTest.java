@@ -4,6 +4,9 @@ import org.apache.zookeeper.*;
 
 import java.util.concurrent.CountDownLatch;
 
+
+import com.wenniuwuren.Constants;
+
 /**
  * zk 创建节点测试，同步创建、异步创建
  * Created by Yibin_Zhu on 2017/3/26.
@@ -13,7 +16,7 @@ public class CreateNodeTest implements Watcher{
 
     public static void main(String[] args) {
         try {
-            ZooKeeper zookeeper = new ZooKeeper("192.168.99.110:2181", 5000, new CreateNodeTest());
+            ZooKeeper zookeeper = new ZooKeeper(Constants.ZK_HOST, 5000, new CreateNodeTest());
             System.out.println(zookeeper.getState());
 
             try {
