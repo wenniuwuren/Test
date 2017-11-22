@@ -25,12 +25,13 @@ public class HBaseHelper {
     static Configuration conf;
 
     static {
-          conf = HBaseConfiguration.create();
-//        conf.set("hbase.zookeeper.quorum", "192.168.227.128");
-//        conf.set("hbase.zookeeper.property.clientPort", "48794");
+        conf = HBaseConfiguration.create();
+        conf.set("hbase.zookeeper.quorum", "192.168.243.128");
+        conf.set("hbase.zookeeper.property.clientPort", "2181");
         try {
             hBaseAdmin = new HBaseAdmin(conf);
-        } catch (IOException e) {
+            createTable("test_zhu", new String[]{"1","2","3"});
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
