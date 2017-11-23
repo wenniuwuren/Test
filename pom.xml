@@ -18,6 +18,15 @@
     </properties>
 
     <dependencies>
+        <!-- thrift start -->
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+
+        <!-- thrift end -->
+
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
