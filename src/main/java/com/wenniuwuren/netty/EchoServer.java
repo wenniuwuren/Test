@@ -32,9 +32,9 @@ public class EchoServer {
         try {
             // 启动辅助类
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+            serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class) // Channel类型
                     .option(ChannelOption.SO_BACKLOG, 1024).handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                    .childHandler(new ChannelInitializer<SocketChannel>() { // 新连接被接收，一个新的子channel被创建
                         public void initChannel(SocketChannel ch) throws Exception{
                             // 规定 frame 长度
                             ch.pipeline().addLast(new FixedLengthFrameDecoder(20));
@@ -44,7 +44,7 @@ public class EchoServer {
                         }
                     });
 
-            // 绑定端口，同步等待成功
+            // 异步绑定端口，调用sync()同步等待成功
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
 
             // 等待服务端监听端口关闭   类似 JDK 的 Future
@@ -52,8 +52,8 @@ public class EchoServer {
         } finally {
 
             // 优雅退出，释放线程池资源
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully().sync();
+            workerGroup.shutdownGracefully().sync();
         }
     }
 

@@ -20,6 +20,10 @@ public class EchoClientHandler extends SimpleChannelInboundHandler {
     public EchoClientHandler() {
     }
 
+    /**
+     * 到服务端连接建立后调用
+     * @param ctx
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         // ByteBuf buf = UnpooledByteBufAllocator.DEFAULT.buffer(ECHO_REQ
