@@ -7,6 +7,10 @@ import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.filter.CompareFilter;
+import org.apache.hadoop.hbase.filter.Filter;
+import org.apache.hadoop.hbase.filter.RegexStringComparator;
+import org.apache.hadoop.hbase.filter.ValueFilter;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
@@ -14,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.ObjDoubleConsumer;
 
 /**
  * hbase-site.xml
@@ -59,6 +64,7 @@ public class HBaseHelper {
         HTableDescriptor hTableDescriptor = new HTableDescriptor(tn);
         for (String columnName : columns) {
             HColumnDescriptor column = new HColumnDescriptor(columnName);
+            column.setMaxVersions(1); // 默认保存3个版本，流水号不需要多个版本保留1个就行
             hTableDescriptor.addFamily(column);
         }
         admin.createTable(hTableDescriptor);
@@ -155,7 +161,7 @@ public class HBaseHelper {
         TableName tn = TableName.valueOf(tableName);
         Table hTable = connection.getTable(tn);
         Get g1 = new Get(Bytes.toBytes(rowKey));
-        g1.addColumn(CF_INFO, COL_NAME); // 不加column 则返回所有列
+//        g1.addColumn(CF_INFO, COL_NAME); // 不加column 则返回所有列
         Result result = hTable.get(g1);
         foreach(result);
         System.out.println("selectOne end");
@@ -202,21 +208,87 @@ public class HBaseHelper {
         hTable.close();
     }
 
+    /**
+     * 按 rowKey 范围查找
+     * @param tableName
+     * @param startRow
+     * @param endRow
+     * @throws Exception
+     */
+    public static void selectByRowKeyRange(String tableName, String startRow, String endRow) throws Exception{
+        TableName tn = TableName.valueOf(tableName);
+        Table hTable = connection.getTable(tn);
+//        byte[] starR = Bytes.padTail(Bytes.toBytes(startRow), Long.SIZE);
+//        byte[] endR = Bytes.padTail(Bytes.toBytes(endRow), Long.SIZE);
+//        Scan scan = new Scan(starR, endR);
+        Scan scan = new Scan(Bytes.toBytes(startRow), Bytes.toBytes(endRow));
+        // 如果 + 1 的话，就把结束的位置包含进查询结果了
+        // Scan scan = new Scan(Bytes.toBytes(startRow), Bytes.toBytes(endRow + 1));
+        ResultScanner resultScanner = null;
+        try {
+            resultScanner = hTable.getScanner(scan);
+            for (Result result : resultScanner) {
+                foreach(result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultScanner != null) {
+                resultScanner.close();
+            }
+        }
+        System.out.println("selectByRowKeyRange end");
+        hTable.close();
+    }
+
+    /**
+     * 查询包含某个字符串的结果
+     * @param tableName
+     * @param cf
+     * @param qual
+     * @param filterStr
+     * @throws Exception
+     */
+    public static void selectByFilterString(String tableName, String cf, String qual, String filterStr) throws Exception{
+        TableName tn = TableName.valueOf(tableName);
+        Table hTable = connection.getTable(tn);
+        Scan scan = new Scan();
+        scan.addColumn(Bytes.toBytes(cf), Bytes.toBytes(qual));
+        Filter f = new ValueFilter(CompareFilter.CompareOp.EQUAL, new RegexStringComparator(".*" + filterStr + ".*"));
+        scan.setFilter(f);
+
+        ResultScanner resultScanner = null;
+        try {
+            resultScanner = hTable.getScanner(scan);
+            for (Result result : resultScanner) {
+                foreach(result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultScanner != null) {
+                resultScanner.close();
+            }
+        }
+        System.out.println("selectByFilterString end");
+        hTable.close();
+
+    }
 
     public static void main(String[] args) throws Exception {
-        String tableName = "users";
+        String tableName = "twits";
 //        String[] columns = new String[]{"column_A", "column_B"};
-        String[] columns = new String[]{"info"};
+        String[] columns = new String[]{"twits"};
 //        createTable(tableName, columns);
         Map<String, String> map = new HashMap<String, String>();
-        map.put("info:name", "zhu");
-        map.put("info:email", "yi");
-        map.put("info:password", "bin");
-//        map.put("column_B:1", "b1");
-//        map.put("column_B:2", "b2");
-        insert(tableName, map, rowKey);
-        selectOne(tableName, rowKey);
-        selectAll(tableName);
+        map.put("twits:dt", "1513739471000");
+        map.put("twits:twit", "bbbbbbbbb");
+        String rowK = "b";
+//        insert(tableName, map, rowK);
+//        selectOne(tableName, rowK);
+//        selectAll(tableName);
+        selectByRowKeyRange(tableName, "a", "b");
+//        selectByFilterString(tableName, "twits", "twit", "llo");
 //        delete(tableName, rowKey);
 //        dropTable(tableName);
     }

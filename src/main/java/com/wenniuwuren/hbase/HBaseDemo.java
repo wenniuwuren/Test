@@ -1,5 +1,7 @@
 package com.wenniuwuren.hbase;
 
+import java.io.IOException;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.*;
@@ -37,7 +39,7 @@ public class HBaseDemo {
 
     public static void main(String args[]){
         //analytics_demo 表名
-        HTableInterface table = getTable("AgentInfo");
+        HTableInterface table = getTable("yanxuan_pinpoint:AgentInfo");
         //　获取row=Info的数据
         Get get = new Get(Bytes.toBytes("Info"));
         try {
@@ -48,6 +50,13 @@ public class HBaseDemo {
             System.out.println(result);
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            try {
+                // 表用完关闭，资源回到连接池
+                table.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
