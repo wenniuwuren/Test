@@ -1,0 +1,13 @@
+package com.wenniuwuren.java.dynamicproxy;
+
+/**
+ * @author wenniuwuren
+ */
+public class RealSubject implements Subject{
+
+
+    @Override
+    public void request() {
+        System.out.println("real subject.");
+    }
+}
