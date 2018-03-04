@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * <p>
  * <strong>使用：</strong>实际的测试类只需继承该基础类并在测试方法上加@Test注解，即可进行单元测试
  *
- * @author hzyurui
  */
 @ActiveProfiles(profiles = {"config/dev"})
 @RunWith(SpringJUnit4ClassRunner.class)
