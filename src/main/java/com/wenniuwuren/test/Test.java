@@ -3,6 +3,7 @@ package com.wenniuwuren.test;
 import javax.swing.tree.TreeNode;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by hzzhuyibin on 2016/8/29.
@@ -21,20 +22,22 @@ public class Test {
 //        String t = "qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxbufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbcjhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxhdvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwesaxsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgrrfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqptrmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhqusvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrkeczjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfnetekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkrisrlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdqgvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawvkivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqkjjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyimkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqszuwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpihavligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorudayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzjaetahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnkaiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj";
 //        System.out.println(Test.findTheDifference(s,t));
 
-        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = new Date();
-        Calendar calendar = Calendar.getInstance(Locale.CHINA);
-        calendar.setTime(currentTime);
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        calendar.set(Calendar.DAY_OF_MONTH, 31);
-        calendar.add(Calendar.MONTH, 1);
+//        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date currentTime = new Date();
+//        Calendar calendar = Calendar.getInstance(Locale.CHINA);
+//        calendar.setTime(currentTime);
+//        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+//        calendar.set(Calendar.DAY_OF_MONTH, 31);
+//        calendar.add(Calendar.MONTH, 1);
+//
+//        System.out.println(sdf1.format(calendar.getTime()));
+//
+//        Calendar calendar1 = Calendar.getInstance(Locale.CHINA);
+//        int month = calendar1.get(Calendar.MONTH);
+//        System.out.println(month);
+//        System.out.println(calendar1.get(Calendar.DAY_OF_MONTH));
 
-        System.out.println(sdf1.format(calendar.getTime()));
 
-        Calendar calendar1 = Calendar.getInstance(Locale.CHINA);
-        int month = calendar1.get(Calendar.MONTH);
-        System.out.println(month);
-        System.out.println(calendar1.get(Calendar.DAY_OF_MONTH));
     }
 
     // 存进Map，对不同 char 个数计数，最后对比 char 字符的数量差别就可以知道插入的 char 是什么
