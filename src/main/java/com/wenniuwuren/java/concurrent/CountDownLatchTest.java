@@ -27,6 +27,8 @@ public class CountDownLatchTest {
             System.out.println("main thread execute other things");
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            threadPoolExecutor.shutdown();
         }
 
 
