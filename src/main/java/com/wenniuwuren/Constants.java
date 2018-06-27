@@ -9,7 +9,7 @@ public class Constants {
      * 本地虚拟机ZK地址
      */
     public static final String ZK_HOST = "192.168.243.128:2181";
-    public static final String REDIS_HOST_COMPANY = "192.168.227.128";
+    public static final String REDIS_HOST_COMPANY = "192.168.243.128";
 
 
     /**
@@ -17,6 +17,11 @@ public class Constants {
      */
     public static final String REDIS_HOST_HOME = "192.168.243.128";
 
+    /**
+     * 本地虚拟机 RocketMQ 地址
+     *
+     */
+    public static final String ROCKETMQ_HOST_HOME = "192.168.243.128:9876";
 
     public static final String KAFKA_HOST = "192.168.243.128:9092";
 }
