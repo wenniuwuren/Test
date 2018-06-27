@@ -1,4 +1,4 @@
-package com.wenniuwuren.rabbit;
+package com.wenniuwuren.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;  

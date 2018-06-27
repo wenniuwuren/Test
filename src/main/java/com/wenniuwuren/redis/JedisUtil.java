@@ -16,21 +16,30 @@ public class JedisUtil {
     public static void main(String[] args) {
         Jedis jedis = new Jedis(Constants.REDIS_HOST_COMPANY);
 
-        jedis.zadd("zset1", 1, "a");
-        jedis.zadd("zset1", 2, "b");
+//        jedis.zadd("zset1", 1, "a");
+//        jedis.zadd("zset1", 2, "b");
 
-        jedis.zadd("zset2", 2, "b");
-        jedis.zadd("zset2", 3, "d");
+//        jedis.zadd("zset2", 2, "b");
+//        jedis.zadd("zset2", 3, "d");
+//
+//        String[] zsets = new String[]{"zset1", "zset2"};
+//        // 交集 返回结果数目
+//        System.out.println(jedis.zinterstore("zset3", zsets));
+//        // 0 -> -1 查询全部
+//        System.out.println(jedis.zrange("zset3", 0, -1));
+//        // 并集
+//        System.out.println(jedis.zunionstore("zset4", zsets));
+//        System.out.println(jedis.zrange("zset4", 0, -1));
 
-        String[] zsets = new String[]{"zset1", "zset2"};
-        // 交集
-        System.out.println(jedis.zinterstore("zset3", zsets));
-        System.out.println(jedis.zrange("zset3", 0, -1));
-        // 并集
-        System.out.println(jedis.zunionstore("zset4", zsets));
-        System.out.println(jedis.zrange("zset4", 0, -1));
+        /*long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            jedis.zadd("delay_bucket_2", new Date().getTime(), UUID.randomUUID().toString());
+        }
+        System.out.println(System.currentTimeMillis() - startTime);*/
 
-
+        long startTime = System.currentTimeMillis();
+        System.out.println(jedis.zrange("delay_bucket_2", 0, -1).size());
+        System.out.println(System.currentTimeMillis() - startTime);
     }
 
     // 对文章进行投票

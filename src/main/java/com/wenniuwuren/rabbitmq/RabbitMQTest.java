@@ -1,6 +1,4 @@
-package com.wenniuwuren.rabbit;
-
-import java.util.HashMap;
+package com.wenniuwuren.rabbitmq;
 
 /**
  * Created by hzzhuyibin on 2016/7/29.
