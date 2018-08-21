@@ -23,5 +23,11 @@ public class Constants {
      */
     public static final String ROCKETMQ_HOST_HOME = "192.168.243.128:9876";
 
+    /**
+     * 本地虚拟机 ActiveMQ 地址
+     */
+    public static final String ACTIVEMQ_HOST_HOME = "tcp://192.168.243.128:61616";
+
+
     public static final String KAFKA_HOST = "192.168.243.128:9092";
 }

@@ -18,6 +18,14 @@
     </properties>
 
     <dependencies>
+        <!-- activemq start-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.15.4</version>
+        </dependency>
+        <!-- activemq end -->
+
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
