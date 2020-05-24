@@ -4,6 +4,9 @@
  */
 package com.wenniuwuren.algorithm.lru.arrray;
 
+/**
+ * 找到矩阵中 target值， 矩阵行递增，列也是递增。
+ */
 public class SearchMatrix {
 
     public boolean searchMatrix(int[][] matrix, int target) {
