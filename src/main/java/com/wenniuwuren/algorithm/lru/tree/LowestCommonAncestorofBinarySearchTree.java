@@ -16,32 +16,47 @@ public class LowestCommonAncestorofBinarySearchTree {
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-        TreeNode result = null;
+        if (root == null) return root;
 
-        if (root == null || p == null || q == null) {
-            return null;
+//        if (root.val >= p.val && root.val <= q.val) return root;
+//        if (root.val <= p.val && root.val >= q.val) return root;
+
+        if (root.val > p.val && root.val > q.val) { //都在左子树
+            return lowestCommonAncestor(root.left, p, q);
         }
 
-        int rootValue = root.val;
-        int pValue = p.val;
-        int qValue = q.val;
-
-        if (rootValue >= pValue && rootValue <= qValue) {
-            result = root;
+        if (root.val < p.val && root.val < q.val) {
+            return lowestCommonAncestor(root.right, p, q);
         }
 
-        if (rootValue >= qValue && rootValue <= pValue) {
-            result = root;
-        }
+        return root;
+    }
 
-        if (rootValue > pValue && rootValue > qValue) {
-            result = lowestCommonAncestor(root.left, p, q);
-        }
+    public static void main(String[] args) {
+        TreeNode treeNode1 = new TreeNode(6);
+        TreeNode treeNode2 = new TreeNode(2);
+        TreeNode treeNode3 = new TreeNode(8);
 
-        if (rootValue < pValue && rootValue < qValue) {
-            result = lowestCommonAncestor(root.right, p, q);
-        }
+        treeNode1.left = treeNode2;
+        treeNode1.right = treeNode3;
 
-        return result;
+        TreeNode treeNode4 = new TreeNode(0);
+        TreeNode treeNode5 = new TreeNode(4);
+        TreeNode treeNode6 = new TreeNode(7);
+        TreeNode treeNode7 = new TreeNode(9);
+
+        treeNode2.left = treeNode4;
+        treeNode2.right = treeNode5;
+        treeNode3.left = treeNode6;
+        treeNode3.right = treeNode7;
+
+        TreeNode treeNode8 = new TreeNode(3);
+        TreeNode treeNode9 = new TreeNode(5);
+        treeNode5.left = treeNode8;
+        treeNode5.right = treeNode9;
+
+        LowestCommonAncestorofBinarySearchTree lowestCommonAncestorofBinarySearchTree = new LowestCommonAncestorofBinarySearchTree();
+//        System.out.println(lowestCommonAncestorofBinarySearchTree.lowestCommonAncestor(treeNode1, new TreeNode(2), new TreeNode(8)));
+        System.out.println(lowestCommonAncestorofBinarySearchTree.lowestCommonAncestor(treeNode1, new TreeNode(2), new TreeNode(4)));
     }
 }
