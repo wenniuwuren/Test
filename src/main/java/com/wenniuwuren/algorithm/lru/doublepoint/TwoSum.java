@@ -2,9 +2,8 @@
  * @(#)TwoSum.java, 2020/10/3.
  * author wenniuwuren
  */
-package com.wenniuwuren.algorithm.lru.arrray;
+package com.wenniuwuren.algorithm.lru.doublepoint;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
