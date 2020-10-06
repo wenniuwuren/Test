@@ -5,7 +5,7 @@
 package com.wenniuwuren.algorithm.lru.tree;
 
 /**
- * Given n, how many structurally unique BST's (binary search trees) that store values 1 ... n?
+ * Given n, how many structurally unique BST's (binarysearch search trees) that store values 1 ... n?
  *
  * 输入n，得到 1..n 组成的不同二叉搜索树数量
  */

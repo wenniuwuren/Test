@@ -2,7 +2,7 @@
  * @(#)SearchInRotatedSortedArray.java, 2020/9/5.
  * author wenniuwuren
  */
-package com.wenniuwuren.algorithm.lru.arrray;
+package com.wenniuwuren.algorithm.lru.binarysearch;
 
 public class SearchInRotatedSortedArray {
 
